@@ -1,0 +1,22 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICES
+          uri: lb://USER-SERVICES
+          predicates:
+            - Path=/users/**
+
+        - id: DEPARTEMNT-SERVICES
+          uri: lb://DEPARTEMNT-SERVICES
+          predicates:
+            - Path=/departmnets/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
